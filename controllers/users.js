@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const { JWT_SECRET } = require('../config');
 const NotFoundError = require('../errors/notFoundError');
-const BadRequest = require('../errors/badRequest');
-const { userDoesNotExist } = require('../constants/error-messages');
+const DoubleEmail = require('../errors/doubleEmail');
+const { userDoesNotExist, doubleEmail } = require('../constants/error-messages');
 
 module.exports.getUserInformation = (req, res, next) => {
   User
@@ -35,7 +35,7 @@ module.exports.createUser = (req, res, next) => {
         email: newUser.email,
         name: newUser.name,
       }))
-      .catch((err) => next(new BadRequest(err.message)));
+      .catch(() => next(new DoubleEmail(doubleEmail)));
   }
 };
 

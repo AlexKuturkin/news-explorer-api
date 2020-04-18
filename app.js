@@ -33,12 +33,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-/* app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас рухнет');
-  }, 0);
-}); */
-
 app.use(cookieParser());
 app.use(routerApp);
 

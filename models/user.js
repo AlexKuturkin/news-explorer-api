@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcryptjs');
 const LoginError = require('../errors/loginError');
-const { authorizationFailedPassOrEmail, doubleEmail } = require('../constants/error-messages');
+const { authorizationFailedPassOrEmail } = require('../constants/error-messages');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -49,9 +48,5 @@ userSchema.statics.findUserByCredentials = function check(email, password) {
       });
     });
 };
-
-userSchema.plugin(uniqueValidator, {
-  message: doubleEmail,
-});
 
 module.exports = mongoose.model('User', userSchema);
