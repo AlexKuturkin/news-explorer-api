@@ -11,7 +11,7 @@ module.exports.getUserInformation = (req, res, next) => {
     .findById(req.user._id)
     .then((user) => {
       if (user) {
-        res.status(200).send({ data: user });
+        res.status(200).send({ name: user.name, email: user.email });
       } else {
         throw new NotFoundError(userDoesNotExist);
       }
