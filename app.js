@@ -29,6 +29,7 @@ mongoose
 
 app.use(helmet());
 app.use(limitedRequest);
+app.use(cookieParser());
 app.use(cors({
   origin: 'http://localhost:8080',
   optionsSuccessStatus: 200,
@@ -39,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use(cookieParser());
+
 app.use(routerApp);
 
 app.use(errorLogger);
