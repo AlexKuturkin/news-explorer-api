@@ -4,10 +4,10 @@ const LoginError = require('../errors/loginError');
 const { errorAuthorization } = require('../constants/error-messages');
 
 module.exports = (req, res, next) => {
-  if (!req.headers || !req.headers.startsWith('Bearer ')) {
+  if (!req.headers) {
     throw new LoginError(errorAuthorization);
   }
-  const token = req.headers.replace('Bearer ', '');
+  const token = req.cookies.jwt;
   let payload;
 
   try {
