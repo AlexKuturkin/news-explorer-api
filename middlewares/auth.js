@@ -3,16 +3,17 @@ const { JWT_SECRET } = require('../config');
 const LoginError = require('../errors/loginError');
 const { errorAuthorization } = require('../constants/error-messages');
 
-module.exports = (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:8080')
-  res.set('Access-Control-Allow-Credentials', 'true')
+module.exports.auth = (req, res, next) => {
+  /* res.set('Access-Control-Allow-Origin', 'http://localhost:8080')
+  res.set('Access-Control-Allow-Credentials', 'true') */
 
-  const { authorization } = req.headers;
+  const { jwt: token } = req.cookies;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
+  if (!token) {
     throw new LoginError(errorAuthorization);
   }
-  const token = authorization.replace('Bearer ', '');
+
+  // const token = authorization.replace('Bearer ', '');
   let payload;
 
   try {

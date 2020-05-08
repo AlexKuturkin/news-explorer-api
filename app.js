@@ -29,7 +29,11 @@ mongoose
 
 app.use(helmet());
 app.use(limitedRequest);
-app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+app.use(cors({
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200,
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
