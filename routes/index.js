@@ -11,7 +11,7 @@ const { resourseNotFound } = require('../constants/error-messages');
 routerApp.use(autorizationRouter);
 
 routerApp.use('/users', authValidation, auth, usersRouter);
-routerApp.use('/articles', authValidation, auth, articlesRouter);
+routerApp.use('/articles', auth, articlesRouter);
 
 routerApp.use('/', (req, res, next) => {
   next(new NotFoundError(resourseNotFound));
