@@ -61,7 +61,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res, next) => {
   res.clearCookie('jwt', {
-    httpOnly: true,
+    httpOnly: false,
   });
 
   res.status(200).send({ message: logOut });
