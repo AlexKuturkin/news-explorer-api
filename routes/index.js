@@ -13,7 +13,7 @@ routerApp.use(autorizationRouter);
 
 routerApp.use('/users', authValidation, auth, usersRouter);
 routerApp.use('/articles', authValidation, auth, articlesRouter);
-// routerApp.use('/logout', logoutRouter);
+routerApp.use('/logout', logoutRouter);
 
 routerApp.use('/', (req, res, next) => {
   next(new NotFoundError(resourseNotFound));
