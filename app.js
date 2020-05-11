@@ -30,7 +30,7 @@ mongoose
 app.use(helmet());
 app.use(limitedRequest);
 app.use(cors({
-  origin: ['http://localhost:8080', 'https://alexkuturkin.github.io'],
+  origin: ['http://localhost:8080', 'http://localhost:8080/', 'http://localhost:8080/index.html', 'https://alexkuturkin.github.io'],
   optionsSuccessStatus: 200,
   credentials: true
 }));
