@@ -5,6 +5,7 @@ const { JWT_SECRET } = require('../config');
 const NotFoundError = require('../errors/notFoundError');
 const DoubleEmail = require('../errors/doubleEmail');
 const { userDoesNotExist, doubleEmail } = require('../constants/error-messages');
+const { logOut } = require('../constants/texts');
 
 module.exports.getUserInformation = (req, res, next) => {
   User
@@ -56,4 +57,12 @@ module.exports.login = (req, res, next) => {
         .send({ token });
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res, next) => {
+  res.clearCookie('jwt', {
+    httpOnly: true,
+  });
+
+  res.status(200).send({ message: logOut });
 };
