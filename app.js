@@ -32,7 +32,9 @@ app.use(limitedRequest);
 app.use(cors({
   origin: ['http://localhost:8080', 'http://localhost:8080/', 'http://localhost:8080/index.html', 'https://alexkuturkin.github.io'],
   optionsSuccessStatus: 200,
-  credentials: true
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: true,
 }));
 app.use(cookieParser());
 
